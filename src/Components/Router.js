@@ -7,10 +7,12 @@ import {
 } from "react-router-dom";
 import Home from "../Routs/Home";
 import Tv from "../Routs/Tv";
+import Header from "./Header";
 import Search from "../Routs/Search";
 
 export default () => (
   <Router>
+    <Header />
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/tv" exact component={Tv} />
