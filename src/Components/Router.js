@@ -6,7 +6,7 @@ import {
   Redirect
 } from "react-router-dom";
 import Home from "../Routs/Home";
-import Tv from "../Routs/Tv";
+import TV from "../Routs/TV";
 import Header from "./Header";
 import Search from "../Routs/Search";
 
@@ -15,7 +15,7 @@ export default () => (
     <Header />
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/tv" exact component={Tv} />
+      <Route path="/tv" exact component={TV} />
       <Route path="/search" exact component={Search} />
       <Redirect from="*" to="/" />
     </Switch>
