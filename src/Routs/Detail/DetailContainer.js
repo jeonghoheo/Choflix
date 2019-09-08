@@ -5,7 +5,6 @@ import { moviesApi, tvApi } from "../../api";
 export default class extends React.Component {
   constructor(props) {
     super(props);
-
     const {
       location: { pathname }
     } = props;
@@ -37,9 +36,7 @@ export default class extends React.Component {
         ({ data: result } = await tvApi.showDetail(parsedId));
       }
     } catch {
-      this.setState({
-        error: "Can't find anything"
-      });
+      this.setState({ error: "Can't find anything." });
     } finally {
       this.setState({ loading: false, result });
     }
