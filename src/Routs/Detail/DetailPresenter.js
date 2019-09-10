@@ -137,6 +137,38 @@ const CoverContainer = styled.div`
   }
 `;
 
+const SeasonsContainer = styled.div`
+  margin-top: 50px;
+  overflow: auto;
+  width: 90%;
+  height: 50%;
+  display: flex;
+`;
+
+const SeasonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  :not(:last-child) {
+    margin-right: 8px;
+  }
+`;
+
+const SeasonTitle = styled.span`
+  margin-top: 10px;
+`;
+
+const SeasonCover = styled.div`
+  width: 150px;
+  background-image: url(${props => props.poster_path});
+  background-position: center center;
+  background-size: cover;
+  height: 250px;
+  border-radius: 5px;
+`;
+
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
     <>
@@ -185,12 +217,14 @@ const DetailPresenter = ({ result, loading, error }) =>
             {result.original_title
               ? result.original_title
               : result.original_name}
-            <ImdbLink
-              href={`https://www.imdb.com/title/${result.imdb_id}/?ref_=inth_ov_i`}
-              target="blank"
-            >
-              <ImbdImg src={IMDB_IMG_LINK} />
-            </ImdbLink>
+            {result.imdb_id && (
+              <ImdbLink
+                href={`https://www.imdb.com/title/${result.imdb_id}/?ref_=inth_ov_i`}
+                target="blank"
+              >
+                <ImbdImg src={IMDB_IMG_LINK} />
+              </ImdbLink>
+            )}
           </Title>
           <ItemContainer>
             <Item>
@@ -216,6 +250,18 @@ const DetailPresenter = ({ result, loading, error }) =>
                     : `${genre.name} / `
                 )}
             </Item>
+            {result.created_by && (
+              <>
+                <Divider>• Creator:</Divider>
+                <Item>
+                  {result.created_by.map((createdBy, index) =>
+                    index === result.created_by.length - 1
+                      ? createdBy.name
+                      : `${createdBy.name}, `
+                  )}
+                </Item>
+              </>
+            )}
           </ItemContainer>
           <Overview>{result.overview}</Overview>
           {result.videos.results.length > 0 && (
@@ -228,6 +274,24 @@ const DetailPresenter = ({ result, loading, error }) =>
               allow="autoplay; encrypted-media"
               allowFullScreen={true}
             ></YoutubeContainer>
+          )}
+          {result.seasons && (
+            <SeasonsContainer>
+              {result.seasons.map((item, index) => {
+                return (
+                  <SeasonContainer key={index}>
+                    <SeasonCover
+                      poster_path={
+                        item.poster_path
+                          ? `https://image.tmdb.org/t/p/original${item.poster_path}`
+                          : require("../../assets/noPosterSmall.png")
+                      }
+                    />
+                    <SeasonTitle>{item.name}</SeasonTitle>
+                  </SeasonContainer>
+                );
+              })}
+            </SeasonsContainer>
           )}
         </Data>
         <ProductionContainer>
@@ -259,10 +323,10 @@ const DetailPresenter = ({ result, loading, error }) =>
               </Production>
             )}
         </ProductionContainer>
+        {console.log(result)}
       </Content>
     </Container>
   );
-
 DetailPresenter.propTypes = {
   result: PropTypes.object,
   loading: PropTypes.bool.isRequired,
