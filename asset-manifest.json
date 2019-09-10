@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/choflix/static/js/main.b4084c0b.chunk.js",
+    "main.js.map": "/choflix/static/js/main.b4084c0b.chunk.js.map",
+    "runtime~main.js": "/choflix/static/js/runtime~main.26717052.js",
+    "runtime~main.js.map": "/choflix/static/js/runtime~main.26717052.js.map",
+    "static/js/2.9726cbe1.chunk.js": "/choflix/static/js/2.9726cbe1.chunk.js",
+    "static/js/2.9726cbe1.chunk.js.map": "/choflix/static/js/2.9726cbe1.chunk.js.map",
+    "index.html": "/choflix/index.html",
+    "precache-manifest.00d1e238b082fde579b7518e9c4a1a02.js": "/choflix/precache-manifest.00d1e238b082fde579b7518e9c4a1a02.js",
+    "service-worker.js": "/choflix/service-worker.js",
+    "static/media/noPosterSmall.png": "/choflix/static/media/noPosterSmall.87a0eb6a.png"
+  }
+}
