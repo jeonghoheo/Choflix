@@ -264,7 +264,7 @@ const DetailPresenter = ({ result, loading, error }) =>
             )}
           </ItemContainer>
           <Overview>{result.overview}</Overview>
-          {result.videos.results.length > 0 && (
+          {result.videos.results.length > 0 && !result.seasons && (
             <YoutubeContainer
               src={`https://www.youtube.com/embed/${result.videos.results[0]
                 .key ||
